@@ -21,8 +21,8 @@ public class Produto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	@Column(name = "codigo")
-	private String codigo;
+	@Column(name = "code")
+	private String code;
 	
 	@Column(name = "name")
 	private String name;
@@ -35,12 +35,12 @@ public class Produto implements Serializable {
 	@JoinColumn(name="categoria_id")
 	private Categoria categoria;
 	
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+	public void setCode(String code) {
+		this.code = code;
 	}
 	
-	public String getCodigo() {
-		return codigo;
+	public String getCode() {
+		return code;
 	}
 
 	public void setName(String name) {

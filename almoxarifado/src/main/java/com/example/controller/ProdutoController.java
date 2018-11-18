@@ -19,8 +19,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.model.Categoria;
 import com.example.model.Produto;
+import com.example.model.UnidadeMedida;
 import com.example.service.CategoriaService;
 import com.example.service.ProdutoService;
+import com.example.service.UnidadeMedidaService;
 
 @Controller
 @RequestMapping("/produtos")
@@ -30,6 +32,9 @@ public class ProdutoController {
 	private ProdutoService produtoService;
 	
 	@Autowired
+	private UnidadeMedidaService unidadeMedidaService;
+	
+	@Autowired
 	private CategoriaService categoriaService; //categoria service
 
 	// Primeira tela da pagina de Produtos
@@ -37,7 +42,7 @@ public class ProdutoController {
 	public String index(Model model) {
 		List<Produto> all = produtoService.findAll();
 		model.addAttribute("listProduto", all);
-		model.addAttribute("");
+		//model.addAttribute("");
 		return "produto/index";
 	}
 	
@@ -53,11 +58,13 @@ public class ProdutoController {
 
 	// Tela com Formulario de New Produto
 	@GetMapping(value = "/new")
-	public String create(Model model, @ModelAttribute Produto entityProduto, 
-			             @ModelAttribute Categoria entityModule) {
+	public String create(Model model, @ModelAttribute Produto entityProduto, @ModelAttribute UnidadeMedida entityMedida, @ModelAttribute Categoria entityCategoria) {
 		// model.addAttribute("produto", entityProduto);
-		List<Categoria> all = categoriaService.findAll();
-		model.addAttribute("categorias", all);
+		List<UnidadeMedida> allMedida = unidadeMedidaService.findAll();
+		model.addAttribute("medidas", allMedida);
+		
+		List<Categoria> allCategoria = categoriaService.findAll();
+		model.addAttribute("categorias", allCategoria);
 		
 		return "produto/form";
 	}
@@ -65,8 +72,9 @@ public class ProdutoController {
 	// Processamento do formulario New Produto (ou Alter Produto) 
 	@PostMapping
 	public String create(@Valid @ModelAttribute Produto entityProduto, 
-			             @Valid @ModelAttribute Categoria entityModule,
-			             BindingResult result, RedirectAttributes redirectAttributes) {
+						@Valid @ModelAttribute UnidadeMedida entityMedida, 
+						@Valid @ModelAttribute Categoria entityCategoria, BindingResult result, 
+			RedirectAttributes redirectAttributes) {
 		Produto produto = null;
 		String pagina_retorno = "redirect:/produtos/" ;
 	
@@ -90,8 +98,11 @@ public class ProdutoController {
 		
 		try {
 			if (id != null) {
-				List<Categoria> all = categoriaService.findAll();
-				model.addAttribute("categorias", all);
+				List<UnidadeMedida> allMedida = unidadeMedidaService.findAll();
+				model.addAttribute("medidas", allMedida);
+				
+				List<Categoria> allCategoria = categoriaService.findAll();
+				model.addAttribute("categorias", allCategoria);
 				
 				Produto entity = produtoService.findOne(id).get();
 				model.addAttribute("produto", entity);

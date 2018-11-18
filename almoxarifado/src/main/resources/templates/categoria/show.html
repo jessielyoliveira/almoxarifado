@@ -23,22 +23,6 @@
 			<span th:text="${categoria.name}"></span> 
 		</div> 
 		
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Name</th> 
-					<th>Email</th> 
-					<th>Registration</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="produto : ${categoria.produtos}">
-					<td th:text="${produto.code}"></td> 
-					<td th:text="${produto.name}"></td>
-				</tr>
-			</tbody>
-		</table>
-		
 		<a th:href="@{/categorias}" class="btn btn-primary">Back</a>
 		<a th:href="@{/categorias/{id}/edit(id = ${categoria.id})}" class="btn btn-info">Edit</a>
 		<a th:href="${categoria.id +'/delete'}" class="btn btn-danger">Delete</a>
