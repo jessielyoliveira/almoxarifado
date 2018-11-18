@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+ 	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Unidade de Medida List</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+		<h1>Unidade de Medida List</h1>
+		<hr />
+		<a th:href="@{/medidas/new}" class="btn btn-success">New Unidade de Medida</a><br/><br/>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Name</th> 
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="unidadeMedida : ${listUnidadeMedida}">
+					<td th:text="${unidadeMedida.name}"></td> 
+					<td>
+							<a th:href="@{/medidas/{id}(id = ${unidadeMedida.id})}" class="btn btn-primary">Show</a> 
+					 		<a th:href="@{/medidas/{id}/edit(id = ${unidadeMedida.id})}" class="btn btn-info">Edit</a> 
+							<a th:href="${'medidas/'+ unidadeMedida.id+'/delete'}" class="btn btn-danger">Destroy</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

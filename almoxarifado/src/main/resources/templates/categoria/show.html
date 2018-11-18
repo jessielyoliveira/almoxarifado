@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Show Categoria</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1>Show Categoria</h1>
+		<hr />
+		<div class="form-group"> 
+			<label for="code">Code: </label>  
+			<span th:text="${categoria.code}"></span> 
+		</div> 
+		<div class="form-group"> 
+			<label for="name">Name: </label>  
+			<span th:text="${categoria.name}"></span> 
+		</div> 
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Name</th> 
+					<th>Email</th> 
+					<th>Registration</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="produto : ${categoria.produtos}">
+					<td th:text="${produto.code}"></td> 
+					<td th:text="${produto.name}"></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<a th:href="@{/categorias}" class="btn btn-primary">Back</a>
+		<a th:href="@{/categorias/{id}/edit(id = ${categoria.id})}" class="btn btn-info">Edit</a>
+		<a th:href="${categoria.id +'/delete'}" class="btn btn-danger">Delete</a>
+		
+	</div>
+</body>
+</html>
