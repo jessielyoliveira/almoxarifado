@@ -28,6 +28,7 @@ public class UnidadeMedidaController {
 	private static final String MSG_SUCESS_UPDATE = "Unidade de medida successfully changed.";
 	private static final String MSG_SUCESS_DELETE = "Deleted unidade de medida successfully.";
 	private static final String MSG_ERROR = "Error.";
+	private static final String MSG_WARNING = "Unidade de medida já cadastrada.";
 
 	@Autowired
 	private UnidadeMedidaService unidadeMedidaService;
@@ -40,14 +41,14 @@ public class UnidadeMedidaController {
 		return "medida/index";
 	}
 	
-	@GetMapping("/{id}")
-	public String show(Model model, @PathVariable("id") Integer id) {
-		if (id != null) {
-			UnidadeMedida unidadeMedida = unidadeMedidaService.findOne(id).get();
-			model.addAttribute("unidadeMedida", unidadeMedida);
-		}
-		return "medida/show";
-	}
+//	@GetMapping("/{id}")
+//	public String show(Model model, @PathVariable("id") Integer id) {
+//		if (id != null) {
+//			UnidadeMedida unidadeMedida = unidadeMedidaService.findOne(id).get();
+//			model.addAttribute("unidadeMedida", unidadeMedida);
+//		}
+//		return "medida/show";
+//	}
 
 	@GetMapping(value = "/new")
 	public String create(Model model, @ModelAttribute UnidadeMedida entityUnidadeMedida, @ModelAttribute Produto entityStudent) {
@@ -58,10 +59,15 @@ public class UnidadeMedidaController {
 	
 	@PostMapping
 	public String create(@Valid @ModelAttribute UnidadeMedida entity, BindingResult result, RedirectAttributes redirectAttributes) {
-		UnidadeMedida unidadeMedida = null;
+//		UnidadeMedida unidadeMedida = null;
+		
 		try {
-			unidadeMedida = unidadeMedidaService.save(entity);
-			redirectAttributes.addFlashAttribute("success", MSG_SUCESS_INSERT);
+			if(!existe(entity)) {
+				/*unidadeMedida = */unidadeMedidaService.save(entity);
+				redirectAttributes.addFlashAttribute("success", MSG_SUCESS_INSERT);
+			} else {
+				redirectAttributes.addFlashAttribute("warning", MSG_WARNING);
+			}
 		} catch (Exception e) {
 			System.out.println("Exception:: exception");
 			e.printStackTrace();
@@ -71,7 +77,7 @@ public class UnidadeMedidaController {
 			e.printStackTrace();
 			redirectAttributes.addFlashAttribute("error", MSG_ERROR);
 		}
-		return "redirect:/medidas/" + unidadeMedida.getId();
+		return "redirect:/medidas" /*+ unidadeMedida.getId()*/;
 	}
 	
 	@GetMapping("/{id}/edit")
@@ -89,15 +95,15 @@ public class UnidadeMedidaController {
 	
 	@PutMapping
 	public String update(@Valid @ModelAttribute UnidadeMedida entity, BindingResult result, RedirectAttributes redirectAttributes) {
-		UnidadeMedida unidadeMedida = null;
+//		UnidadeMedida unidadeMedida = null;
 		try {
-			unidadeMedida = unidadeMedidaService.save(entity);
+			/*unidadeMedida = */unidadeMedidaService.save(entity);
 			redirectAttributes.addFlashAttribute("success", MSG_SUCESS_UPDATE);
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("error", MSG_ERROR);
 			e.printStackTrace();
 		}
-		return "redirect:/medidas/" + unidadeMedida.getId();
+		return "redirect:/medidas" /*+ unidadeMedida.getId()*/;
 	}
 	
 	@RequestMapping("/{id}/delete")
@@ -112,7 +118,18 @@ public class UnidadeMedidaController {
 			redirectAttributes.addFlashAttribute("error", MSG_ERROR);
 			throw new ServiceException(e.getMessage());
 		}
-		return "redirect:/medidas/";
+		return "redirect:/medidas";
 	}
-
+	
+	public boolean existe(UnidadeMedida unidade) {
+		List<UnidadeMedida> medidas = unidadeMedidaService.findAll();	
+		for (UnidadeMedida medida : medidas) {
+			String temp = medida.getName().toLowerCase();
+			if(temp.equals(unidade.getName().toLowerCase())) {
+				return true;
+			}
+		}	
+		return false;
+	}
+	
 }

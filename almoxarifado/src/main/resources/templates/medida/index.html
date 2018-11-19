@@ -27,9 +27,9 @@
 				<tr th:each="unidadeMedida : ${listUnidadeMedida}">
 					<td th:text="${unidadeMedida.name}"></td> 
 					<td>
-							<a th:href="@{/medidas/{id}(id = ${unidadeMedida.id})}" class="btn btn-primary">Show</a> 
-					 		<a th:href="@{/medidas/{id}/edit(id = ${unidadeMedida.id})}" class="btn btn-info">Edit</a> 
-							<a th:href="${'medidas/'+ unidadeMedida.id+'/delete'}" class="btn btn-danger">Destroy</a>
+						<!-- <a th:href="@{/medidas/{id}(id = ${unidadeMedida.id})}" class="btn btn-primary">Show</a> --> 
+					 	<a th:href="@{/medidas/{id}/edit(id = ${unidadeMedida.id})}" class="btn btn-info">Edit</a> 
+						<a th:href="${'medidas/'+unidadeMedida.id+'/delete'}" class="btn btn-danger">Destroy</a>
 					</td>
 				</tr>
 			</tbody>

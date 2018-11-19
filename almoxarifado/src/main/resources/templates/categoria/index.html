@@ -29,9 +29,9 @@
 					<td th:text="${categoria.code}"></td> 
 					<td th:text="${categoria.name}"></td> 
 					<td>
-							<a th:href="@{/categorias/{id}(id = ${categoria.id})}" class="btn btn-primary">Show</a> 
-					 		<a th:href="@{/categorias/{id}/edit(id = ${categoria.id})}" class="btn btn-info">Edit</a> 
-							<a th:href="${'categorias/'+ categoria.id+'/delete'}" class="btn btn-danger">Destroy</a>
+						<!-- <a th:href="@{/categorias/{id}(id = ${categoria.id})}" class="btn btn-primary">Show</a> --> 
+					 	<a th:href="@{/categorias/{id}/edit(id = ${categoria.id})}" class="btn btn-info">Edit</a> 
+						<a th:href="${'categorias/'+ categoria.id+'/delete'}" class="btn btn-danger">Destroy</a>
 					</td>
 				</tr>
 			</tbody>

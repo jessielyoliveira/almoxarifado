@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 
 
+
 @Entity
 @Table(name = "medidas")
 public class UnidadeMedida implements Serializable {
@@ -46,5 +47,6 @@ public class UnidadeMedida implements Serializable {
 		this.produtos = produtos;
 	}
 	
+
 	
 }

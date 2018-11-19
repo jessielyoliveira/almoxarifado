@@ -40,14 +40,14 @@ public class CategoriaController {
 		return "categoria/index";
 	}
 	
-	@GetMapping("/{id}")
-	public String show(Model model, @PathVariable("id") Integer id) {
-		if (id != null) {
-			Categoria categoria = categoriaService.findOne(id).get();
-			model.addAttribute("categoria", categoria);
-		}
-		return "categoria/show";
-	}
+//	@GetMapping("/{id}")
+//	public String show(Model model, @PathVariable("id") Integer id) {
+//		if (id != null) {
+//			Categoria categoria = categoriaService.findOne(id).get();
+//			model.addAttribute("categoria", categoria);
+//		}
+//		return "categoria/show";
+//	}
 
 	@GetMapping(value = "/new")
 	public String create(Model model, @ModelAttribute Categoria entityCategoria, @ModelAttribute Produto entityStudent) {
@@ -58,9 +58,9 @@ public class CategoriaController {
 	
 	@PostMapping
 	public String create(@Valid @ModelAttribute Categoria entity, BindingResult result, RedirectAttributes redirectAttributes) {
-		Categoria categoria = null;
+//		Categoria categoria = null;
 		try {
-			categoria = categoriaService.save(entity);
+			/*categoria =*/ categoriaService.save(entity);
 			redirectAttributes.addFlashAttribute("success", MSG_SUCESS_INSERT);
 		} catch (Exception e) {
 			System.out.println("Exception:: exception");
@@ -71,7 +71,7 @@ public class CategoriaController {
 			e.printStackTrace();
 			redirectAttributes.addFlashAttribute("error", MSG_ERROR);
 		}
-		return "redirect:/categorias/" + categoria.getId();
+		return "redirect:/categorias/" /*+ categoria.getId()*/;
 	}
 	
 	@GetMapping("/{id}/edit")
@@ -89,15 +89,15 @@ public class CategoriaController {
 	
 	@PutMapping
 	public String update(@Valid @ModelAttribute Categoria entity, BindingResult result, RedirectAttributes redirectAttributes) {
-		Categoria categoria = null;
+//		Categoria categoria = null;
 		try {
-			categoria = categoriaService.save(entity);
+			/*categoria =*/ categoriaService.save(entity);
 			redirectAttributes.addFlashAttribute("success", MSG_SUCESS_UPDATE);
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("error", MSG_ERROR);
 			e.printStackTrace();
 		}
-		return "redirect:/categorias/" + categoria.getId();
+		return "redirect:/categorias/" /*+ categoria.getId()*/;
 	}
 	
 	@RequestMapping("/{id}/delete")
