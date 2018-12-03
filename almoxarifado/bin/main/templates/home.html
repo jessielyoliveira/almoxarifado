@@ -21,7 +21,7 @@
 	                <span class="icon-bar"></span>
 	                <span class="icon-bar"></span>
 	            </button>
-	            <a class="navbar-brand" href="/">Almoxarifado</a>
+	            <a class="navbar-brand" href="/">Gerenciamento de Almoxarifado</a>
 	        </div>
 	        <div class="navbar-collapse collapse">
 	            <ul class="nav navbar-nav navbar-right">
@@ -39,7 +39,60 @@
 		<div th:if="${warning != null}" class="alert alert-warning" role="alert"><span th:text="${warning}">msg warning</span></div>
 	
 		<div layout:fragment="content">
-		  <h3>This is an example of Spring MVC Application</h3>
+		 	<h2 align="center">Saída de Produtos</h2>
+		 	<form action="">
+		 		<div class="row">
+		 			<div class="col-md-8" style="border:1px solid blue;">
+		 				<div class="row" style="border:1px solid blue;">
+			 				<div class="form-group col-md-10">
+				 				<label for="produto">Produto</label>
+						 		<select id="produto" class="form-control">
+									<option>1</option>
+									<option>2</option>
+								</select>
+				 			</div>
+					 		<div class="form-group col-md-2">
+						 		<label for="quantidade">Quantidade</label>
+								<input id="quantidade" name="name" type="text" class="form-control">
+					 		</div>
+			 			</div>
+			 			<div class="row">
+				 			<div class="form-group col-md" style="margin-top:10px">
+				 				<table class="table" style="border:1px solid blue;">
+									<thead>
+										<tr>
+											<th>Produto</th>
+											<th>Quantidade</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="produto : ${listProduto}">
+											<td th:text="${produto.code}"></td> 
+											<td th:text="${produto.name}"></td> 
+											<td th:text="${produto.unidadeMedida}"></td>
+											<td th:text="${produto.categoria}"></td>  
+										</tr>
+									</tbody>
+								</table>
+							</div>
+			 			</div>
+		 			</div>
+		 			<div class="col-md-4" style="border:1px solid green">
+		 				<div class="form-group">
+				 				<label for="setor">Setor</label>
+						 		<select id="setor" class="form-control">
+									<option>setor 1</option>
+									<option>setor 2</option>
+								</select>
+				 			</div>
+		 			</div>
+		 		</div>
+		 		
+		 		
+				
+			</form>
+		 	
+		 	
 		</div>
 	</div>	
 	</body>
