@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <package id="1" language="java" name="com.example.controller" project="almoxarifado" 
+    file="/almoxarifado/src/main/java/com/example/controller" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="354" width="1016" x="14" y="23"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="2" language="java" name="com.example.controller.CategoriaController" project="almoxarifado" 
+    file="/almoxarifado/src/main/java/com/example/controller/CategoriaController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="175" y="183"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="false"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.example.controller.MedidaController" project="almoxarifado" 
+    file="/almoxarifado/src/main/java/com/example/controller/MedidaController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="867" y="183"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="false"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.example.controller.ProdutoController" project="almoxarifado" 
+    file="/almoxarifado/src/main/java/com/example/controller/ProdutoController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="523" y="219"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="false"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="5" language="java" name="com.example.model" project="almoxarifado" 
+    file="/almoxarifado/src/main/java/com/example/model" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="429" width="673" x="27" y="704"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="6" language="java" name="com.example.model.Categoria" project="almoxarifado" 
+    file="/almoxarifado/src/main/java/com/example/model/Categoria.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="138" y="910"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="false"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.example.model.Medida" project="almoxarifado" 
+    file="/almoxarifado/src/main/java/com/example/model/Medida.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="363" y="886"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="false"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.example.model.Produto" project="almoxarifado" 
+    file="/almoxarifado/src/main/java/com/example/model/Produto.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="577" y="929"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="false"/>    
+    </display>  
+  </class>  
+  <package id="9" language="java" name="com.example.repository" project="almoxarifado" 
+    file="/almoxarifado/src/main/java/com/example/repository" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="418" width="322" x="715" y="714"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <interface id="10" language="java" name="com.example.repository.CategoriaRepository" project="almoxarifado" 
+    file="/almoxarifado/src/main/java/com/example/repository/CategoriaRepository.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="76" width="260" x="741" y="783"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="11" language="java" name="com.example.repository.MedidaRepository" project="almoxarifado" 
+    file="/almoxarifado/src/main/java/com/example/repository/MedidaRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="84" width="261" x="744" y="871"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="12" language="java" name="com.example.repository.ProdutoRepository" project="almoxarifado" 
+    file="/almoxarifado/src/main/java/com/example/repository/ProdutoRepository.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="78" width="259" x="749" y="972"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <package id="13" language="java" name="com.example.service" project="almoxarifado" 
+    file="/almoxarifado/src/main/java/com/example/service" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="286" width="1018" x="15" y="391"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="14" language="java" name="com.example.service.CategoriaService" project="almoxarifado" 
+    file="/almoxarifado/src/main/java/com/example/service/CategoriaService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="150" y="558"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="com.example.service.MedidaService" project="almoxarifado" 
+    file="/almoxarifado/src/main/java/com/example/service/MedidaService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="513" y="558"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="com.example.service.ProdutoService" project="almoxarifado" 
+    file="/almoxarifado/src/main/java/com/example/service/ProdutoService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="799" y="552"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="17">    
+    <bendpoint x="496" y="1038"/>    
+    <bendpoint x="382" y="1045"/>    
+    <end type="SOURCE" refId="8" navigable="true">      
+      <attribute id="18" name="medida"/>      
+      <multiplicity id="19" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true">      
+      <attribute id="20" name="produtos">        
+        <position height="17" width="52" x="437" y="1014"/>      
+      </attribute>      
+      <multiplicity id="21" minimum="0" maximum="2147483647">        
+        <position height="15" width="21" x="471" y="1000"/>      
+      </multiplicity>    
+    </end>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="22">    
+    <bendpoint x="484" y="1104"/>    
+    <bendpoint x="210" y="1103"/>    
+    <end type="SOURCE" refId="8" navigable="true">      
+      <attribute id="23" name="categoria"/>      
+      <multiplicity id="24" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true">      
+      <attribute id="25" name="produtos">        
+        <position height="17" width="52" x="426" y="1087"/>      
+      </attribute>      
+      <multiplicity id="26" minimum="0" maximum="2147483647">        
+        <position height="15" width="21" x="460" y="1067"/>      
+      </multiplicity>    
+    </end>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
