@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Saída</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h2>Saída de Produtos</h2>
+		 	<hr style="margin-bottom:40px;margin-top:10px">
+		 	
+		 	<form th:action="@{/produtos/saida}" th:object="${produto}">
+				<div class="row">
+					<div class="form-group col-md-10" th:object="${produto}">
+						<label for="produto">Produto</label> 
+						<select name="produto.id" class="form-control">
+							<option th:each="produto: ${produtos}" th:value="${produto.id}" th:text="${produto.nome}"></option>
+						</select>
+					</div>
+					<div class="form-group col-md-2">
+						<label for="quantidade">Quantidade</label>
+						<input id="quantidade" name="quantidade" type="text" class="form-control" >
+					</div>
+				</div>
+				<button type="submit" class="btn btn-success">Adicionar</button>
+			</form>
+		 	
+		 	<div class="row">
+				<div class="form-group col-md-12" style="margin-top:15px">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Produto</th>
+								<th>Quantidade</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="produto : ${listProduto}">
+								<td th:text="${produto.nome}"></td> 
+								<td th:text="${produto.quantidade}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+ 			</div>
+		</div>
+</body>
+</html>

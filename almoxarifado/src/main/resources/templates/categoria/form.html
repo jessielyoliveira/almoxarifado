@@ -13,9 +13,9 @@
 <body>
 	<div layout:fragment="content">
 		<h2 th:if="${categoria.id == null}">Nova categoria</h2>
-		<h2 th:if="${categoria.id != null}">Editar categoria</h2>
+		<h2 th:if="${categoria.codigo != null}">Editar categoria</h2>
 		<hr />
-		<form th:action="@{/categorias}" th:method="@{${categoria.id == null} ? 'post' : 'put'}"
+		<form th:action="@{/categorias}" th:method="@{${categoria.codigo == null} ? 'post' : 'put'}"
 			th:object="${categoria}">
 			<input type="hidden" th:field="*{id}" /> 
 			

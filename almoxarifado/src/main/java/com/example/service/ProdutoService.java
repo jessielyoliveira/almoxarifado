@@ -2,6 +2,9 @@ package com.example.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.model.Categoria;
+import com.example.model.Medida;
 import com.example.model.Produto;
 import com.example.repository.ProdutoRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +35,19 @@ public class ProdutoService {
 	public void delete(Produto entity) {
 		produtoRepository.delete(entity);
 	}
-
+	
+	public boolean existe(Produto prod) {
+		List<Produto> produtos = findAll();	
+		for (Produto produto : produtos) {
+			String codigo = produto.getCodigo();
+			String nome = produto.getNome().toLowerCase();
+			if(nome.equals(prod.getNome().toLowerCase()) || codigo.equals(prod.getCodigo())) {
+				return true;
+			}
+		}	
+		return false;
+	}
+	
+	
 }
 	

@@ -23,6 +23,7 @@
 					<th>Nome</th> 
 					<th>Unidade de medida</th> 
 					<th>Categoria</th>
+					<th>Quantidade</th>
 					<th>Opções</th>
 				</tr>
 			</thead>
@@ -32,10 +33,11 @@
 					<td th:text="${produto.nome}"></td> 
 					<td th:text="${produto.medida}"></td>
 					<td th:text="${produto.categoria}"></td>  
+					<td th:text="${produto.quantidade}"></td>
 					<td>
-							<a th:href="@{/produtos/{id}(id = ${produto.id})}" class="btn btn-primary" >Mostrar</a> 
-					 		<a th:href="@{/produtos/{id}/edit(id = ${produto.id})}" class="btn btn-info">Editar</a> 
-					 		<a th:href="${'produtos/'+ produto.id +'/delete'}" class="btn btn-danger">Apagar</a>
+  						<!-- <a th:href="@{/produtos/{id}(id = ${produto.id})}" class="btn btn-primary" >Mostrar</a> --> 
+					 	<a th:href="@{/produtos/{id}/edit(id = ${produto.id})}" class="btn btn-info">Editar</a> 
+					 	<a th:href="${'produtos/'+ produto.id +'/delete'}" class="btn btn-danger">Apagar</a>
 					</td>
 				</tr>
 			</tbody>

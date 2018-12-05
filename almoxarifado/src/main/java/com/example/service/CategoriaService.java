@@ -3,6 +3,7 @@ package com.example.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.model.Categoria;
+import com.example.model.Medida;
 import com.example.repository.CategoriaRepository;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
@@ -36,11 +37,20 @@ public class CategoriaService {
 	public boolean existe(Categoria categ) {
 		List<Categoria> categorias = findAll();	
 		for (Categoria categoria : categorias) {
-			String temp = categoria.getNome().toLowerCase();
-			if(temp.equals(categ.getNome().toLowerCase())) {
+			String codigo = categoria.getCodigo();
+			String nome = categoria.getNome().toLowerCase();
+			if(nome.equals(categ.getNome().toLowerCase()) || codigo.equals(categ.getCodigo())) {
 				return true;
 			}
 		}	
+		return false;
+	}
+	
+	public boolean empty() {
+		List<Categoria> categorias = findAll();
+		if(categorias.isEmpty()) {
+			return true;
+		}
 		return false;
 	}
 

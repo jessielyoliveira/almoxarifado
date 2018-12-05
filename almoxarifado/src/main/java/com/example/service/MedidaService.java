@@ -43,6 +43,14 @@ public class MedidaService {
 		}	
 		return false;
 	}
+	
+	public boolean empty() {
+		List<Medida> medidas = findAll();
+		if(medidas.isEmpty()) {
+			return true;
+		}
+		return false;
+	}
 
 }
 	

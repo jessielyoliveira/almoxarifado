@@ -29,7 +29,7 @@ public class Produto implements Serializable {
 	private String nome;
 	
 	@Column(name = "quantidade")
-	private int quantidade;
+	private int quantidade = 0;
 	
 	@ManyToOne
 	@JoinColumn (name = "medida")
@@ -39,14 +39,17 @@ public class Produto implements Serializable {
 	@JoinColumn(name="categoria")
 	private Categoria categoria;
 	
+	public Integer getId() { return id; }
+	public void setId(Integer id) { this.id = id; }
+	
 	public void setCodigo(String codigo) { this.codigo = codigo; }
 	public String getCodigo() { return codigo; }
 
 	public void setNome(String nome) { this.nome = nome; }
 	public String getNome() { return nome; }
-
-	public Integer getId() { return id; }
-	public void setId(Integer id) { this.id = id; }
+	
+	public int getQuantidade() { return quantidade;	}
+	public void setQuantidade(int quantidade) { this.quantidade = quantidade; }
 	
 	public Medida getMedida() {	return medida; }
 	public void setMedida(Medida medida) { this.medida = medida; }

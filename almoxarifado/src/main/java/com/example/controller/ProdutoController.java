@@ -2,6 +2,7 @@ package com.example.controller;
 
 import java.util.List;
 
+import javax.persistence.Id;
 import javax.validation.Valid;
 
 import org.hibernate.service.spi.ServiceException;
@@ -36,7 +37,7 @@ public class ProdutoController {
 	
 	@Autowired
 	private CategoriaService categoriaService;
-
+	
 	@GetMapping
 	public String index(Model model) {
 		List<Produto> all = produtoService.findAll();
@@ -45,7 +46,13 @@ public class ProdutoController {
 		return "produto/index";
 	}
 	
-	// Tela de Show Produto
+	@GetMapping("/saida")
+	public String saida(Model model) {
+		List<Produto> allProdutos = produtoService.findAll();
+		model.addAttribute("produtos", allProdutos);
+		return "produto/saida";
+	}
+		
 	@GetMapping("/{id}")
 	public String show(Model model, @PathVariable("id") Integer id) {
 		if (id != null) {
@@ -55,7 +62,6 @@ public class ProdutoController {
 		return "produto/show";
 	}
 
-	// Tela com Formulario de New Produto
 	@GetMapping(value = "/new")
 	public String create(Model model, @ModelAttribute Produto entityProduto, @ModelAttribute Medida entityMedida, @ModelAttribute Categoria entityCategoria) {
 		// model.addAttribute("produto", entityProduto);
@@ -68,19 +74,27 @@ public class ProdutoController {
 		return "produto/form";
 	}
 	
-	// Processamento do formulario New Produto (ou Alter Produto) 
 	@PostMapping
 	public String create(@Valid @ModelAttribute Produto entityProduto, 
 						@Valid @ModelAttribute Medida entityMedida, 
 						@Valid @ModelAttribute Categoria entityCategoria, BindingResult result, 
 			RedirectAttributes redirectAttributes) {
 		Produto produto = null;
-		String pagina_retorno = "redirect:/produtos" ;
+//		String pagina_retorno = "redirect:/produtos" ;
 	
 		try {
-			produto = produtoService.save(entityProduto);
-			redirectAttributes.addFlashAttribute("success", MSG_SUCESS_INSERT);
-			pagina_retorno = pagina_retorno/* + produto.getId()*/;
+			if(medidaService.empty()) {
+				redirectAttributes.addFlashAttribute("warning", "É preciso cadastrar unidades de medida.");
+				return "redirect:/medidas/new";
+			} else if(categoriaService.empty()) {
+				redirectAttributes.addFlashAttribute("warning", "É preciso cadastrar categorias.");
+				return "redirect:/categorias/new";
+			} else if(!produtoService.existe(entityProduto)) {
+				produtoService.save(entityProduto);
+				redirectAttributes.addFlashAttribute("success", MSG_SUCESS_INSERT);
+			} else {
+				redirectAttributes.addFlashAttribute("warning", MSG_WARNING);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			redirectAttributes.addFlashAttribute("error", MSG_ERROR);
@@ -89,7 +103,7 @@ public class ProdutoController {
 			redirectAttributes.addFlashAttribute("error", MSG_ERROR);
 		}
 		
-		return pagina_retorno;
+		return "redirect:/produtos";
 	}
 	
 	@GetMapping("/{id}/edit")
@@ -117,8 +131,9 @@ public class ProdutoController {
 			             RedirectAttributes redirectAttributes) {
 		Produto produto = null;
 		try {
-			produto = produtoService.save(entity);
+			produtoService.save(entity);
 			redirectAttributes.addFlashAttribute("success", MSG_SUCESS_UPDATE);
+			
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("error", MSG_ERROR);
 			e.printStackTrace();
@@ -145,6 +160,7 @@ public class ProdutoController {
 	private static final String MSG_SUCESS_UPDATE = "Produto modificado.";
 	private static final String MSG_SUCESS_DELETE = "Produto apagado.";
 	private static final String MSG_ERROR = "Erro na inserção do produto";
+	private static final String MSG_WARNING = "Produto já cadastrado.";
 
 
 }
