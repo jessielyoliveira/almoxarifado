@@ -7,29 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Unidade de Medida List</title>
+    <title>Medidas</title>
 </head>
 <body>
 
 	<div layout:fragment="content">
-		<h1>Unidade de Medida List</h1>
+		<h2>Lista de unidades de medida </h2>
 		<hr />
-		<a th:href="@{/medidas/new}" class="btn btn-success">New Unidade de Medida</a><br/><br/>
+		<a th:href="@{/medidas/new}" class="btn btn-success">Nova unidade de medida</a><br/><br/>
 		
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Name</th> 
-					<th>Action</th>
+					<th>Medida</th> 
+					<th>Opções</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="unidadeMedida : ${listUnidadeMedida}">
-					<td th:text="${unidadeMedida.name}"></td> 
+				<tr th:each="medida : ${listMedida}">
+					<td th:text="${medida.nome}"></td> 
 					<td>
-						<!-- <a th:href="@{/medidas/{id}(id = ${unidadeMedida.id})}" class="btn btn-primary">Show</a> --> 
-					 	<a th:href="@{/medidas/{id}/edit(id = ${unidadeMedida.id})}" class="btn btn-info">Edit</a> 
-						<a th:href="${'medidas/'+unidadeMedida.id+'/delete'}" class="btn btn-danger">Destroy</a>
+						<!-- <a th:href="@{/medidas/{id}(id = ${medida.id})}" class="btn btn-primary">Show</a> --> 
+					 	<a th:href="@{/medidas/{id}/edit(id = ${medida.id})}" class="btn btn-info">Editar</a> 
+						<a th:href="${'medidas/'+medida.id+'/delete'}" class="btn btn-danger">Apagar</a>
 					</td>
 				</tr>
 			</tbody>

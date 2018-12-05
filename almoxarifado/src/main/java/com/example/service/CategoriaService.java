@@ -32,6 +32,17 @@ public class CategoriaService {
 	public void delete(Categoria entity) {
 		categoriaRepository.delete(entity);
 	}
+	
+	public boolean existe(Categoria categ) {
+		List<Categoria> categorias = findAll();	
+		for (Categoria categoria : categorias) {
+			String temp = categoria.getNome().toLowerCase();
+			if(temp.equals(categ.getNome().toLowerCase())) {
+				return true;
+			}
+		}	
+		return false;
+	}
 
 }
 	

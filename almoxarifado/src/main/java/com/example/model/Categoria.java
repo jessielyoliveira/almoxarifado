@@ -10,11 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "categorias")
+@Table(name = "categoria")
 public class Categoria implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -22,35 +21,30 @@ public class Categoria implements Serializable {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-    @Column(name = "code")
-    private String code;
+	@NotNull @Column(name = "codigo")
+    private String codigo;
 
-    @Column(name = "name")
-    private String name;
+	@NotNull @Column(name = "nome")
+    private String nome;
 	
     @Override
 	public String toString() {
-		return name;
+		return nome;
 	}
     
     @OneToMany(mappedBy="categoria", cascade = CascadeType.ALL)
     List<Produto> produtos;
     
-	public void setCode(String code) {this.code = code;}
-	public String getCode() {return code;}
+	public void setCodigo(String codigo) {this.codigo = codigo;}
+	public String getCodigo() {return codigo;}
 	
-	public void setName(String name) {this.name = name;}
-	public String getName() {return name;}
+	public void setNome(String nome) {this.nome = nome;}
+	public String getNome() {return nome;}
 
 	public Integer getId() { return id; }
 	public void setId(Integer id) { this.id = id; }
 	
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-	public void setProdutoss(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
-	
+	public List<Produto> getProdutos() { return produtos; }
+	public void setProdutoss(List<Produto> produtos) { this.produtos = produtos; }
 	
 }

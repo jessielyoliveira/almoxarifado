@@ -8,24 +8,24 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>New Unidade de Medida</title>
+<title>Nova Medida</title>
 </head>
 <body>
 	<div layout:fragment="content">
-		<h1 th:if="${unidadeMedida.id == null}">New Unidade de Medida</h1>
-		<h1 th:if="${unidadeMedida.id != null}">Edit Unidade de Medida</h1>
+		<h2 th:if="${medida.id == null}">Nova unidade de medida</h2>
+		<h2 th:if="${medida.id != null}">Editar unidade de medida</h2>
 		<hr />
-		<form th:action="@{/medidas}" th:method="@{${unidadeMedida.id == null} ? 'post' : 'put'}"
-			th:object="${unidadeMedida}">
-			<input type="hidden" th:field="*{id}" /> 
-			
-				<div class="form-group"> 
-					<label for="name">Name</label>  
-					<input id="name" name="name" type="text" class="form-control" th:field="*{name}" />  
-				</div> 
+		<form th:action="@{/medidas}" th:method="@{${medida.id == null} ? 'post' : 'put'}"
+			th:object="${medida}">
+			<input type="hidden" th:field="*{id}" />
 
-			<button type="submit" class="btn btn-success">Save</button>
-			<a th:href="@{/medidas}" class="btn btn-default">Back</a>
+			<div class="form-group">
+				<label for="nome">Nome</label>
+				<input id="nome" name="nome" type="text" class="form-control" required="required" th:field="*{nome}" />
+			</div>
+
+			<button type="submit" class="btn btn-success">Salvar</button>
+			<a th:href="@{/medidas}" class="btn btn-default">Voltar</a>
 		</form>
 	</div>
 </body>

@@ -24,10 +24,12 @@ import com.example.service.CategoriaService;
 @RequestMapping("/categorias")
 public class CategoriaController {
 
-	private static final String MSG_SUCESS_INSERT = "Categoria inserted successfully.";
-	private static final String MSG_SUCESS_UPDATE = "Categoria successfully changed.";
-	private static final String MSG_SUCESS_DELETE = "Deleted Categoria successfully.";
-	private static final String MSG_ERROR = "Error.";
+	private static final String MSG_SUCESS_INSERT = "Categoria inserida.";
+	private static final String MSG_SUCESS_UPDATE = "Categoria modificada.";
+	private static final String MSG_SUCESS_DELETE = "Categoria apagada.";
+	private static final String MSG_ERROR = "Erro na inserção da categoria";
+	private static final String MSG_WARNING = "Categoria já cadastrada.";
+
 
 	@Autowired
 	private CategoriaService categoriaService;
@@ -58,10 +60,13 @@ public class CategoriaController {
 	
 	@PostMapping
 	public String create(@Valid @ModelAttribute Categoria entity, BindingResult result, RedirectAttributes redirectAttributes) {
-//		Categoria categoria = null;
 		try {
-			/*categoria =*/ categoriaService.save(entity);
-			redirectAttributes.addFlashAttribute("success", MSG_SUCESS_INSERT);
+			if(!categoriaService.existe(entity)) {
+				categoriaService.save(entity);
+				redirectAttributes.addFlashAttribute("success", MSG_SUCESS_INSERT);
+			} else {
+				redirectAttributes.addFlashAttribute("warning", MSG_WARNING);
+			}
 		} catch (Exception e) {
 			System.out.println("Exception:: exception");
 			e.printStackTrace();
@@ -71,7 +76,7 @@ public class CategoriaController {
 			e.printStackTrace();
 			redirectAttributes.addFlashAttribute("error", MSG_ERROR);
 		}
-		return "redirect:/categorias/" /*+ categoria.getId()*/;
+		return "redirect:/categorias";
 	}
 	
 	@GetMapping("/{id}/edit")
@@ -89,15 +94,14 @@ public class CategoriaController {
 	
 	@PutMapping
 	public String update(@Valid @ModelAttribute Categoria entity, BindingResult result, RedirectAttributes redirectAttributes) {
-//		Categoria categoria = null;
 		try {
-			/*categoria =*/ categoriaService.save(entity);
+			categoriaService.save(entity);
 			redirectAttributes.addFlashAttribute("success", MSG_SUCESS_UPDATE);
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("error", MSG_ERROR);
 			e.printStackTrace();
 		}
-		return "redirect:/categorias/" /*+ categoria.getId()*/;
+		return "redirect:/categorias" /*+ categoria.getId()*/;
 	}
 	
 	@RequestMapping("/{id}/delete")
@@ -112,7 +116,7 @@ public class CategoriaController {
 			redirectAttributes.addFlashAttribute("error", MSG_ERROR);
 			throw new ServiceException(e.getMessage());
 		}
-		return "redirect:/categorias/";
+		return "redirect:/categorias";
 	}
 
 }

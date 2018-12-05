@@ -7,35 +7,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Produto List</title>
+    <title>Produtos</title>
 </head>
 <body>
 
 	<div layout:fragment="content">
-		<h1>Produto List</h1>
+		<h2>Lista de produtos</h2>
 		<hr />
-		<a th:href="@{/produtos/new}" class="btn btn-success">New Produto</a><br/><br/>
+		<a th:href="@{/produtos/new}" class="btn btn-success">Novo produto</a><br/><br/>
 		
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Code</th>
-					<th>Name</th> 
-					<th>Unidade de Medida</th> 
+					<th>Código</th>
+					<th>Nome</th> 
+					<th>Unidade de medida</th> 
 					<th>Categoria</th>
-					<th>Action</th>
+					<th>Opções</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="produto : ${listProduto}">
-					<td th:text="${produto.code}"></td> 
-					<td th:text="${produto.name}"></td> 
-					<td th:text="${produto.unidadeMedida}"></td>
+					<td th:text="${produto.codigo}"></td> 
+					<td th:text="${produto.nome}"></td> 
+					<td th:text="${produto.medida}"></td>
 					<td th:text="${produto.categoria}"></td>  
 					<td>
-							<a th:href="@{/produtos/{id}(id = ${produto.id})}" class="btn btn-primary" >Show</a> 
-					 		<a th:href="@{/produtos/{id}/edit(id = ${produto.id})}" class="btn btn-info">Edit</a> 
-					 		<a th:href="${'produtos/'+ produto.id +'/delete'}" class="btn btn-danger">Destroy</a>
+							<a th:href="@{/produtos/{id}(id = ${produto.id})}" class="btn btn-primary" >Mostrar</a> 
+					 		<a th:href="@{/produtos/{id}/edit(id = ${produto.id})}" class="btn btn-info">Editar</a> 
+					 		<a th:href="${'produtos/'+ produto.id +'/delete'}" class="btn btn-danger">Apagar</a>
 					</td>
 				</tr>
 			</tbody>

@@ -10,43 +10,35 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-
-
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "medidas")
-public class UnidadeMedida implements Serializable {
+@Table(name = "medida")
+public class Medida implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-    @Column(name = "name")
-    private String name;
+    @NotNull @Column(name = "nome")
+    private String nome;
 	
     @Override
 	public String toString() {
-		return name;
+		return nome;
 	}
     
-    @OneToMany(mappedBy="unidadeMedida", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="medida", cascade = CascadeType.ALL)
     List<Produto> produtos;
     
-	public void setName(String name) {this.name = name;}
-	public String getName() {return name;}
-
 	public Integer getId() { return id; }
 	public void setId(Integer id) { this.id = id; }
+    
+	public String getNome() {return nome;}
+	public void setNome(String nome) {this.nome = nome;}
 	
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-	public void setProdutoss(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
-	
-
+	public List<Produto> getProdutos() { return produtos; }
+	public void setProdutos(List<Produto> produtos) { this.produtos = produtos;	}
 	
 }

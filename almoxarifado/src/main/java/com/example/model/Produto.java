@@ -11,8 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "produtos")
+@Table(name = "produto")
 public class Produto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -21,58 +22,36 @@ public class Produto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	@Column(name = "code")
-	private String code;
+	@Column(name = "codigo")
+	private String codigo;
 	
-	@Column(name = "name")
-	private String name;
+	@Column(name = "nome")
+	private String nome;
+	
+	@Column(name = "quantidade")
+	private int quantidade;
+	
+	@ManyToOne
+	@JoinColumn (name = "medida")
+	private Medida medida;
 
 	@ManyToOne
-	@JoinColumn(name = "unidadeMedida")
-	private UnidadeMedida unidadeMedida;
-
-	@ManyToOne
-	@JoinColumn(name="categoria_id")
+	@JoinColumn(name="categoria")
 	private Categoria categoria;
 	
-	public void setCode(String code) {
-		this.code = code;
-	}
+	public void setCodigo(String codigo) { this.codigo = codigo; }
+	public String getCodigo() { return codigo; }
+
+	public void setNome(String nome) { this.nome = nome; }
+	public String getNome() { return nome; }
+
+	public Integer getId() { return id; }
+	public void setId(Integer id) { this.id = id; }
 	
-	public String getCode() {
-		return code;
-	}
+	public Medida getMedida() {	return medida; }
+	public void setMedida(Medida medida) { this.medida = medida; }
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
-	public UnidadeMedida getUnidadeMedida() {
-		return unidadeMedida;
-	}
-	
-	public void setUnidadeMedida(UnidadeMedida unidadeMedida) {
-		this.unidadeMedida = unidadeMedida;
-	}
-
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
+	public Categoria getCategoria() { return categoria; }
+	public void setCategoria(Categoria categoria) { this.categoria = categoria; }
 
 }

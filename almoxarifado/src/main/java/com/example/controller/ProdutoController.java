@@ -19,10 +19,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.model.Categoria;
 import com.example.model.Produto;
-import com.example.model.UnidadeMedida;
+import com.example.model.Medida;
 import com.example.service.CategoriaService;
 import com.example.service.ProdutoService;
-import com.example.service.UnidadeMedidaService;
+import com.example.service.MedidaService;
 
 @Controller
 @RequestMapping("/produtos")
@@ -32,12 +32,11 @@ public class ProdutoController {
 	private ProdutoService produtoService;
 	
 	@Autowired
-	private UnidadeMedidaService unidadeMedidaService;
+	private MedidaService medidaService;
 	
 	@Autowired
-	private CategoriaService categoriaService; //categoria service
+	private CategoriaService categoriaService;
 
-	// Primeira tela da pagina de Produtos
 	@GetMapping
 	public String index(Model model) {
 		List<Produto> all = produtoService.findAll();
@@ -58,9 +57,9 @@ public class ProdutoController {
 
 	// Tela com Formulario de New Produto
 	@GetMapping(value = "/new")
-	public String create(Model model, @ModelAttribute Produto entityProduto, @ModelAttribute UnidadeMedida entityMedida, @ModelAttribute Categoria entityCategoria) {
+	public String create(Model model, @ModelAttribute Produto entityProduto, @ModelAttribute Medida entityMedida, @ModelAttribute Categoria entityCategoria) {
 		// model.addAttribute("produto", entityProduto);
-		List<UnidadeMedida> allMedida = unidadeMedidaService.findAll();
+		List<Medida> allMedida = medidaService.findAll();
 		model.addAttribute("medidas", allMedida);
 		
 		List<Categoria> allCategoria = categoriaService.findAll();
@@ -72,16 +71,16 @@ public class ProdutoController {
 	// Processamento do formulario New Produto (ou Alter Produto) 
 	@PostMapping
 	public String create(@Valid @ModelAttribute Produto entityProduto, 
-						@Valid @ModelAttribute UnidadeMedida entityMedida, 
+						@Valid @ModelAttribute Medida entityMedida, 
 						@Valid @ModelAttribute Categoria entityCategoria, BindingResult result, 
 			RedirectAttributes redirectAttributes) {
 		Produto produto = null;
-		String pagina_retorno = "redirect:/produtos/" ;
+		String pagina_retorno = "redirect:/produtos" ;
 	
 		try {
 			produto = produtoService.save(entityProduto);
 			redirectAttributes.addFlashAttribute("success", MSG_SUCESS_INSERT);
-			pagina_retorno = pagina_retorno + produto.getId();
+			pagina_retorno = pagina_retorno/* + produto.getId()*/;
 		} catch (Exception e) {
 			e.printStackTrace();
 			redirectAttributes.addFlashAttribute("error", MSG_ERROR);
@@ -98,7 +97,7 @@ public class ProdutoController {
 		
 		try {
 			if (id != null) {
-				List<UnidadeMedida> allMedida = unidadeMedidaService.findAll();
+				List<Medida> allMedida = medidaService.findAll();
 				model.addAttribute("medidas", allMedida);
 				
 				List<Categoria> allCategoria = categoriaService.findAll();
@@ -124,7 +123,7 @@ public class ProdutoController {
 			redirectAttributes.addFlashAttribute("error", MSG_ERROR);
 			e.printStackTrace();
 		}
-		return "redirect:/produtos/" + produto.getId();
+		return "redirect:/produtos" /*+ produto.getId()*/;
 	}
 	
 	@RequestMapping("/{id}/delete")
@@ -139,13 +138,13 @@ public class ProdutoController {
 			redirectAttributes.addFlashAttribute("error", MSG_ERROR);
 			throw new ServiceException(e.getMessage());
 		}
-		return "redirect:/produtos/";
+		return "redirect:/produtos";
 	}
 	
-	private static final String MSG_SUCESS_INSERT = "Produto inserted successfully.";
-	private static final String MSG_SUCESS_UPDATE = "Produto successfully changed.";
-	private static final String MSG_SUCESS_DELETE = "Deleted Produto successfully.";
-	private static final String MSG_ERROR = "Erro na inserção do Produto";
+	private static final String MSG_SUCESS_INSERT = "Produto inserido.";
+	private static final String MSG_SUCESS_UPDATE = "Produto modificado.";
+	private static final String MSG_SUCESS_DELETE = "Produto apagado.";
+	private static final String MSG_ERROR = "Erro na inserção do produto";
 
 
 }
